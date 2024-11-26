@@ -3,9 +3,6 @@ services:
   mosquitto:
     image: eclipse-mosquitto:latest
     container_name: mosquitto-broker
-    ports:
-      - "1883:1883" # MQTT
-      - "9001:9001" # WebSockets (if enabled in your config)
     restart: unless-stopped
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
