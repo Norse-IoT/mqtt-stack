@@ -27,6 +27,6 @@ services:
 
 volumes:
   data:
-    name: "mqtt-broker-data"
+    name: "mqtt-broker-data-niot"
 
 
