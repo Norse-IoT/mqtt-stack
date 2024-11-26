@@ -3,10 +3,33 @@ services:
   mosquitto:
     image: eclipse-mosquitto:latest
     container_name: mosquitto-broker
-    volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
     ports:
       - "1883:1883" # MQTT
       - "9001:9001" # WebSockets (if enabled in your config)
     restart: unless-stopped
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - type: bind
+        source: ./config/
+        target: /mosquitto/config/
+      - type: bind
+        source: ./log/
+        target: /mosquitto/log/
+      - type: volume
+        source: data
+        target: /mosquitto/data/
+    ports:
+      - target: 1883
+        published: 1883
+        protocol: tcp
+        mode: host
+      - target: 9001
+        published: 9001
+        protocol: tcp
+        mode: host
+
+volumes:
+  data:
+    name: "mqtt-broker-data"
+
 
