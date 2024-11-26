@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   mosquitto:
     image: eclipse-mosquitto:latest
@@ -6,12 +5,12 @@ services:
     restart: unless-stopped
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
-      - type: bind
-        source: ./config/
-        target: /mosquitto/config/
-      - type: bind
-        source: ./log/
-        target: /mosquitto/log/
+      # - type: bind
+        # source: ./config/
+        # target: /mosquitto/config/
+      # - type: bind
+        # source: ./log/
+        # target: /mosquitto/log/
       - type: volume
         source: data
         target: /mosquitto/data/
