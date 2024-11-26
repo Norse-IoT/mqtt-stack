@@ -4,7 +4,9 @@ services:
     container_name: mosquitto-broker
     restart: unless-stopped
     volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - type: bind
+        source: ./mosquitto.conf
+        target: /mosquitto/config/mosquitto.conf
       # - type: bind
         # source: ./config/
         # target: /mosquitto/config/
